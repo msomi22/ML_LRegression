@@ -46,7 +46,10 @@ def circleAreaPrediction(predRadius):
 	print '******************************************************************************************************'
 	print "Circle r = ", predRadius ," A = " , model.predict([[predRadius]]) , " CA = ", getCircleArea(predRadius) 
 	print '******************************************************************************************************'
-	plt.scatter(X,Y)
+	plt.scatter(X, Y, color='red') 
+	plt.plot(X, Y, color='blue', linewidth=3)
+	#plt.xticks(())
+	#plt.yticks(()) 
 	plt.xlabel("Circle Radius")
 	plt.ylabel("Cricle Area")
 	plt.title("Linear Regression, Circle Area Prediction") 
