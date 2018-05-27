@@ -6,4 +6,4 @@
 * The we will predict area for radius 7
 
 * See sample graph
-[embed]circleAreaLineGraph.png[/embed] 
+[embed]https://github.com/msomi22/ML_LRegression/blob/master/circleAreaLineGraph.png[/embed] 
