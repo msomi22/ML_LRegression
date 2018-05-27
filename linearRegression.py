@@ -1,4 +1,5 @@
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split 
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -32,22 +33,23 @@ def getCircleArea(radius):
 	return round(np.pi * radius * radius, 4)
 
 def circleAreaPrediction(predRadius): 
-	X = []  
-	Y = []
+	RADIUS_X = []  
+	AREA_Y = []
 	for num in range(1,14): 
-		X.append([num])
-		Y.append(getCircleArea(num))#
+		RADIUS_X.append([num])
+		AREA_Y.append(getCircleArea(num))#
 	
     #Train our model 
 	model = LinearRegression()
-	model.fit(X,Y) 
-	print X
-	print Y
+	X_train, X_test, y_train, y_test = train_test_split(RADIUS_X, AREA_Y, test_size=0.2, random_state=0)   
+	model.fit(X_train,y_train) 
+	print X_train
+	print y_train
 	print '******************************************************************************************************'
 	print "Circle r = ", predRadius ," A = " , model.predict([[predRadius]]) , " CA = ", getCircleArea(predRadius) 
 	print '******************************************************************************************************'
-	plt.scatter(X, Y, color='red') 
-	plt.plot(X, Y, color='blue', linewidth=3)
+	plt.scatter(RADIUS_X, AREA_Y, color='red') 
+	plt.plot(RADIUS_X, AREA_Y, color='blue', linewidth=3) 
 	#plt.xticks(())
 	#plt.yticks(()) 
 	plt.xlabel("Circle Radius")
@@ -55,5 +57,6 @@ def circleAreaPrediction(predRadius):
 	plt.title("Linear Regression, Circle Area Prediction") 
 	plt.savefig('circleAreaLineGraph')   
 	#plt.show() 
+	# we plot the independent variable (radius) on the x-axis and dependent variable (area) on the y-axis
 
 circleAreaPrediction(7)  
