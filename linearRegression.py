@@ -1,7 +1,4 @@
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split 
-from sklearn import metrics  
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -38,26 +35,19 @@ def getCircleArea(radius):
 def circleAreaPrediction(predRadius): 
 	RADIUS_X = []  
 	AREA_Y = []
-	for num in range(1,14): 
+	for num in range(1,21): 
 		RADIUS_X.append([num])
 		AREA_Y.append(getCircleArea(num))#
 	
     #Create and Train our model 
 	model = LinearRegression()
-	#X_train, X_test, y_train, y_test = train_test_split(RADIUS_X, AREA_Y, test_size=0.2, random_state=0)   
 	model.fit(RADIUS_X,AREA_Y) 
-	 
-	#print X_train
-	#print y_train
-	print '******************************************************************************************************'
-	print "Circle r = ", predRadius ," A = " , model.predict([[predRadius]]) , " CA = ", getCircleArea(predRadius) 
-	print '******************************************************************************************************'
-
+	print "Circle r = ", predRadius ," A = " , model.predict([[predRadius]]) , " CA = ", getCircleArea(predRadius)
+	y = eval('model.coef_*RADIUS_X + model.intercept_') 
+	
     # we plot the independent variable (radius) on the x-axis and dependent variable (area) on the y-axis
 	plt.scatter(RADIUS_X, AREA_Y, color='red') 
-	plt.plot(RADIUS_X, AREA_Y, color='blue', linewidth=3) 
-	#plt.xticks(())
-	#plt.yticks(()) 
+	plt.plot(RADIUS_X, y, color='blue', linewidth=3) 
 	plt.xlabel("Circle Radius")
 	plt.ylabel("Cricle Area")
 	plt.title("Linear Regression, Circle Area Prediction") 
