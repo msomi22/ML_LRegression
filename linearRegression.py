@@ -8,14 +8,29 @@ import matplotlib.pyplot as plt
 A simple numeric prediction based on some funny series 
 '''
 def numericPrediction():
-	X = [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],[11,11]]
+	X = [1,2,3,4,5,6,7,8,9,10,11]
+	X = np.array(X).reshape((-1, 1))
+
 	Y = [10,20,30,40,50,60,70,80,90,100,110]
+
 	model = LinearRegression()
 	model.fit(X,Y)
-	print "12 + 12 = %d" %model.predict([[12,12]])
-	print "13 + 13 = %d" %model.predict([[13,13]])
-	print "20 + 20 = %d" %model.predict([[20,20]])
-	print "21 + 21 = %d" %model.predict([[21,21]]) 
+
+	sy = eval('model.coef_*X + model.intercept_')  
+	
+	plt.scatter(X,  Y, color='red')   
+	plt.plot(X, sy, color='blue', linewidth=3) 
+	plt.xlabel("Pattern")
+	plt.ylabel("Output") 
+	plt.title("Linear Regression, Patter Prediction") 
+	plt.savefig('numericPredictionGraph')  
+
+    
+	print "12 = %d" %model.predict(np.array([12]).reshape((-1, 1)))   
+	print "13 = %d" %model.predict(np.array([13]).reshape((-1, 1)))   
+	print "14 = %d" %model.predict(np.array([14]).reshape((-1, 1)))   
+	print "15 = %d" %model.predict(np.array([15]).reshape((-1, 1)))    
+	
 
 
 #numericPrediction()
