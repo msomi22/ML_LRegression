@@ -1,4 +1,6 @@
 from sklearn.linear_model import LinearRegression
+from sklearn import svm 
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -50,14 +52,24 @@ def getCircleArea(radius):
 def circleAreaPrediction(predRadius): 
 	RADIUS_X = []  
 	AREA_Y = []
-	for num in range(1,21): 
+	for num in range(1,47): 
 		RADIUS_X.append([num])
-		AREA_Y.append(getCircleArea(num))#
+		AREA_Y.append(long(getCircleArea(num)))#
 	
     #Create and Train our model 
 	model = LinearRegression()
 	model.fit(RADIUS_X,AREA_Y) 
-	print "Circle r = ", predRadius ," A = " , model.predict([[predRadius]]) , " CA = ", getCircleArea(predRadius)
+	print "LinearRegression: Circle r = ", predRadius ," A = " , model.predict([[predRadius]]) , " CA = ", getCircleArea(predRadius)
+
+	'''
+	use classifier 
+	'''
+	clf = svm.SVC() 
+	clf.fit(RADIUS_X,AREA_Y)  
+	print "SVM: Circle r = ", predRadius ," A = " ,clf.predict([[predRadius]])  , " CA = ", getCircleArea(predRadius)
+	
+
+
 	y = eval('model.coef_*RADIUS_X + model.intercept_') 
 	
     # we plot the independent variable (radius) on the x-axis and dependent variable (area) on the y-axis
