@@ -52,7 +52,7 @@ def getCircleArea(radius):
 def circleAreaPrediction(predRadius): 
 	RADIUS_X = []  
 	AREA_Y = []
-	for num in range(1,47): 
+	for num in range(1,100): 
 		RADIUS_X.append([num])
 		AREA_Y.append(long(getCircleArea(num)))#
 	
@@ -80,4 +80,4 @@ def circleAreaPrediction(predRadius):
 	plt.title("Linear Regression, Circle Area Prediction") 
 	plt.savefig('circleAreaLineGraph')   
 
-circleAreaPrediction(7)  
+circleAreaPrediction(47)  
